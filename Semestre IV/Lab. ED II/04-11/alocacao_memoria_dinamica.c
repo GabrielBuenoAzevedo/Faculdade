@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <time.h>
 #include <unistd.h>
-#include "lista_ordenada.h"
+#include "headers/lista_memoria.h"
 
 //Constantes de tamanho de memória e processos
 #define MAX_MEMORIA	256
@@ -13,7 +13,7 @@
 #define MAX_RANDOM	10
 
 main(){
-	lista *inicio, *busca;
+	lista_memoria *inicio, *busca;
 	int opcao,random, tamanhoProcesso,id,numProcessos, processoDeletado;
 	char algoritmo,lixo;
 

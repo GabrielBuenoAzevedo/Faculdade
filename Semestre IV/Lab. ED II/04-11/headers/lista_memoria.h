@@ -6,28 +6,28 @@ typedef struct elemento{
 	int tamanho;					//Tamanho do processo/espaço livre
 	int id;						//ID:  > 0 caso processo, 0 caso espaco livre
 	char tipo;					//Tipo: L caso espaco livre, P caso processo 
-	struct elemento *prox;				//Proximo elemento da lista
+	struct elemento *prox;				//Proximo elemento da lista_memoria
 	struct elemento *ant;
-}lista;
+}lista_memoria;
 
 //Funções básicas de lista
-lista* insereElemento(lista* ant,int id, int tamanho, char tipo);
-lista* removeElemento(lista* elem, lista* ant);
-void imprimeLista(lista* inicio);
+lista_memoria* insereElemento(lista_memoria* ant,int id, int tamanho, char tipo);
+lista_memoria* removeElemento(lista_memoria* elem, lista_memoria* ant);
+void imprimeLista(lista_memoria* inicio);
 //Funções focadas para o uso de gerenciamento de memória
-lista* primeiroEspacoLivre(lista* inicio, int tamanho);
-lista* piorEspacoLivre(lista* inicio, int tamanho);
-lista* melhorEspacoLivre(lista* inicio, int tamanho);
-lista* procuraProcesso(lista* inicio, int id);
-lista* procuraEspacoLivre(lista* inicio, lista* espaco);
-int adicionaProcesso(lista* inicio,int id, int tam,char tipoBusca);
-lista* removeProcesso(lista* inicio,int id);
-lista* juntaEspacosLivres(lista *elem);
-lista* inicializaMemoria(int tam);
+lista_memoria* primeiroEspacoLivre(lista_memoria* inicio, int tamanho);
+lista_memoria* piorEspacoLivre(lista_memoria* inicio, int tamanho);
+lista_memoria* melhorEspacoLivre(lista_memoria* inicio, int tamanho);
+lista_memoria* procuraProcesso(lista_memoria* inicio, int id);
+lista_memoria* procuraEspacoLivre(lista_memoria* inicio, lista_memoria* espaco);
+int adicionaProcesso(lista_memoria* inicio,int id, int tam,char tipoBusca);
+lista_memoria* removeProcesso(lista_memoria* inicio,int id);
+lista_memoria* juntaEspacosLivres(lista_memoria *elem);
+lista_memoria* inicializaMemoria(int tam);
 
 //Insere um elemento depois do elemento ant
-lista* insereElemento(lista *ant, int id, int tamanho, char tipo){
-	lista *novo = (lista*)malloc(sizeof(lista));
+lista_memoria* insereElemento(lista_memoria *ant, int id, int tamanho, char tipo){
+	lista_memoria *novo = (lista_memoria*)malloc(sizeof(lista_memoria));
 	novo->id = id;
 	novo->tamanho = tamanho;
 	novo->tipo = tipo;
@@ -50,8 +50,8 @@ lista* insereElemento(lista *ant, int id, int tamanho, char tipo){
 
 
 //Remove o elem, que fica depois do elemento ant
-lista* removeElemento(lista* elem,lista *ant){
-	lista *aux = elem;
+lista_memoria* removeElemento(lista_memoria* elem,lista_memoria *ant){
+	lista_memoria *aux = elem;
 
 	if(elem != NULL){
 		if(ant == NULL)					//elem é o primeiro elemento da lista (ou unico)
@@ -68,8 +68,8 @@ lista* removeElemento(lista* elem,lista *ant){
 
 
 //Imprime toda a lista
-void imprimeLista(lista* inicio){
-	lista *aux = inicio;
+void imprimeLista(lista_memoria* inicio){
+	lista_memoria *aux = inicio;
 	while(aux != NULL){
 		if(aux->tipo == 'L')
 			printf("Espaço Livre\n");
@@ -82,8 +82,8 @@ void imprimeLista(lista* inicio){
 
 
 //Procura o primeiro espaço livre em que o processo caiba e retorna o anterior
-lista* primeiroEspacoLivre(lista *inicio, int tamanho){
-	lista *aux1;
+lista_memoria* primeiroEspacoLivre(lista_memoria *inicio, int tamanho){
+	lista_memoria *aux1;
 
 	aux1 = inicio;
 
@@ -101,8 +101,8 @@ lista* primeiroEspacoLivre(lista *inicio, int tamanho){
 
 
 //Procura o pior espaço livre em que o processo caiba e retorna o anterior
-lista* piorEspacoLivre(lista *inicio, int tamanho){
-	lista *aux, *piorEspaco;
+lista_memoria* piorEspacoLivre(lista_memoria *inicio, int tamanho){
+	lista_memoria *aux, *piorEspaco;
 
 	aux = inicio;
 	piorEspaco = NULL;
@@ -133,8 +133,8 @@ lista* piorEspacoLivre(lista *inicio, int tamanho){
 
 
 //Procura o melhor espaço livre em que o processo caiba e retorna o anterior
-lista* melhorEspacoLivre(lista *inicio, int tamanho){
-	lista *aux, *melhorEspaco;
+lista_memoria* melhorEspacoLivre(lista_memoria *inicio, int tamanho){
+	lista_memoria *aux, *melhorEspaco;
 
 	aux = inicio;
 	melhorEspaco = NULL;
@@ -169,8 +169,8 @@ lista* melhorEspacoLivre(lista *inicio, int tamanho){
 
 
 //Procura o processo com o ID indicado e retorna o elemento anterior ao mesmo
-lista* procuraProcesso(lista *inicio, int id){
-	lista *aux1, *aux2;
+lista_memoria* procuraProcesso(lista_memoria *inicio, int id){
+	lista_memoria *aux1, *aux2;
 
 	aux1 = inicio;
 
@@ -185,8 +185,8 @@ lista* procuraProcesso(lista *inicio, int id){
 
 
 //Adiciona um processo executando à memória
-int adicionaProcesso(lista *inicio,int id, int tamanho,char tipoBusca){
-	lista *busca;
+int adicionaProcesso(lista_memoria *inicio,int id, int tamanho,char tipoBusca){
+	lista_memoria *busca;
 
 	switch(tipoBusca){
 	case 'B':
@@ -218,8 +218,8 @@ int adicionaProcesso(lista *inicio,int id, int tamanho,char tipoBusca){
 
 
 //Remove um processo que está sendo executado
-lista* removeProcesso(lista *inicio, int id){
-	lista *elem;
+lista_memoria* removeProcesso(lista_memoria *inicio, int id){
+	lista_memoria *elem;
 	elem = procuraProcesso(inicio,id);
 
 	elem->tipo = 'L';
@@ -230,8 +230,8 @@ lista* removeProcesso(lista *inicio, int id){
 
 
 //Junta espaços de memória livre adjacentes
-lista* juntaEspacosLivres(lista *elem){
-	lista *prox, *ant, *aux;
+lista_memoria* juntaEspacosLivres(lista_memoria *elem){
+	lista_memoria *prox, *ant, *aux;
 
 	aux = elem;
 	prox = elem->prox;
@@ -252,8 +252,8 @@ lista* juntaEspacosLivres(lista *elem){
 
 
 //Inicializa a memória com tam de memória
-lista* inicializaMemoria(int tam){
-	lista *inicio;
+lista_memoria* inicializaMemoria(int tam){
+	lista_memoria *inicio;
 	inicio = insereElemento(NULL,0,tam,'L');
 	return inicio;
 }
