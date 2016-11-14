@@ -1,0 +1,96 @@
+ |E  ^											____________________________________
+ |S  |G								   	       |									|
+ |P  |E					     				   |                                    |
+ |E  |N        				     			   |____________________________________| 
+ |C  |E                                                           |   
+ |I  |R                                                           |
+ |A  |A                                        ___________________|_________________
+ |L  |L                                       |                                     |
+ |I  |I                            ___________|___________               ___________|___________
+ |Z  |Z                           |                       | 			|                       |
+ |A  |A			      	  		  |                       |             |                       |
+ |Ç  |Ç			        		  |_______________________|             |_______________________| 
+ |Ã  |Ã
+ |O  |O
+ V   |
+
+
+    A herança por substituição de tipo dá aos métodos a 
+capacidade de substituição, isto é, um método que utiliza
+um objeto de uma superclasse pode também utilizar um objeto
+de uma classe derivada sem a necessidade de alterar o tipo
+do objeto e também não compromete o funcionamento do sistema.
+
+    A herança por substituição de tipo confere ao programa uma
+possibilidade maior de reutilização de código e permite que a
+operação de objetos tenha seu contexto ampliado.
+    Essa característica de ampliação do contexto de operação é 
+chamada de capacidade de conexão, que é uma característica bastante
+poderosa do desenvolvimento de software, pois permite ao programa
+utilizar subtipos.
+    Um subtipo é um tipo que estende outro por meio da herança.
+
+
+**Encapsulamento de herança**
+	A herança pode ser pública, privada ou protegida.
+	Na herança pública todos membros da classe base mantém seu
+encapsulamento nas classes derivadas, isto é, os membros públicos
+da classe base permanecem públicos nas classes derivadas e assim 
+por diante. Os membros privados não são acessíveis.
+	Na herança protegida, os membros públicos tornam-se protegidos
+na classe derivada e os membros protegidos tornam-se privados.
+	Na herança privada tanto os membros públicos quanto os membros
+protegiso tornam-se privados na classe derivada.
+	As heranças protefidas e privadas limitam a profundidade da
+hierarquia da herança. 
+
+**Herança Múltipla**
+	O paradima de orientação a objetos prevê a existência de herança
+de múltiplas classes, contudo nem todas as linguagens implementam
+essa possibilidade.
+	Na herança múltipla uma classe herda as características e os
+comportamentos de duas ou mais classes base.
+	A herança múltipla é um instrumento poderoso na construção de
+sistemas de informação orientados a objetos. Entretanto, o planejamento
+e a manutenção de programas que se utilizam desse instrumento torna-se
+mais complexo e, caso não seja utilizado de forma adequada, pode
+deixar o software com problemas de organização, aumentando a possibilidade
+de erros e a dificuldade na manutenção.
+
+	A linguagem C++ permite a herança múltipla que é implementada da seguinte
+forma:
+		class classeD: encap classeB1,classeB2,classeB3{
+		.
+		.
+		.
+		}
+
+	Exemplo: Classe ContaPremium
+
+														______________________________	
+													   |		Conta_Corrente		  |
+	 _____________________________          		   |------------------------------|				
+	| 		   Aplicação		  |          		   | #Ag						  |
+	|-----------------------------|					   | #NRO						  |
+	| #rendimento				  |					   | #Saldo						  |
+	| #periodicidade			  |					   |------------------------------|
+	|-----------------------------|					   | +Conta_Corrente()			  |
+	| +APlicacao()				  |					   | +Saque						  |
+	| +obterRetorno()			  |					   | +Deposito					  |
+	| +aplicar(valor)			  |					   | +VerSaldo					  |
+	|_____________________________|					   |______________________________|	
+					|													|
+					|													|
+					|___________________________________________________|
+											|
+											|
+								____________|____________
+							   |	  Conta_Premium      |
+							   |-------------------------|
+							   | #Manutençao			 |
+							   |-------------------------|
+							   | +baixaAutomatica()		 |
+							   | +aplicacaoAutomatica()	 |
+							   | +consultarRendimentos() |
+							   |_________________________|
+ 

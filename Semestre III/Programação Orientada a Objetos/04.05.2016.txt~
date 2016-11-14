@@ -1,0 +1,39 @@
+Abstração
+		Redução de um problema complexo a um problema mais simples com menos detalhes.
+	Na programação, o uso de abstração contribui em dois aspectos:
+		1-Permite resolver um problema mais facilmente, pois reduz a quantidade
+		  de detalhes a serem tratados
+		2-Auxilia na capacidade de reuso de código
+
+		A chave para um código de difícil manutenção está na grande especialização de 
+	sua implementação combinada com a interdependência de componentes.
+		O uso da abstração permite elaborar soluções mais genéricas que podem ser uti-
+	lizadas em diferentes problemas.
+	 __________________
+	|____IMPORTANTE____|
+		A maior prioridade de um desenvolvedor deve ser escrever código que atenda aos
+	requisitos do problema em questão.
+		No desejo de escrever código abstrato, muitos programadores acabam não escreven-
+	do o problema que têm em mãos.
+		Regras para Abstração eficaz:
+		-Trate do caso geral e não do específico
+		-Ao lidar com vários problemas diferentes, busque o que for comum em todos	
+		-Não perca o foco tentando escrever código abstrato. Tenha em mente o problema
+		 a ser resolvido
+		-A experiência e a prática são fatores determinantes na construção de código 
+		 abstrato.
+		-Durante a elaboração da solução utilizando abstração, esteja preparado, pois 
+		 erros podem acontecer.
+
+Tipos Abstratos de Dados -TAD
+		TAD é um conjunto de dados e operações sobre esses dados. Eles permitem que
+	novos tipos sejam definidos na linguagem, ocultando dados internos e o estado por trás
+	de uma interface bem definida.
+		A interface apresenta o TAD como uma unidade atômica.
+		Existem duas formas de abordar a construção de TADs:
+		A primeira delas é a abordagem padrão e diz respeito à agregação de dados e 
+	operações sobre os dados em uma única construção.
+		Nesta abordagem, se reforça a ideia de que qando não se utilizem TADs, os dados
+	são representados por variáveis avulsas e as operações sobre os dados como funções ou 
+	procedimentos também avulsos.
+	 

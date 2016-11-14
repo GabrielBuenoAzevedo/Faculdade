@@ -1,0 +1,25 @@
+Abstração
+	É o processo de simplificar um problema difícil.
+	Na P.O.O. a abstração torna o código mais independente e reutilizável.
+	Frequentemente os códigos acabam se tornando altamente especializados
+    dependentes uns dos outros, diminuindo sua capacidade de reutilização.	
+	Por isso, sempre que possível deve-se tentar desenvolver código abstrato.
+
+Como fazer abstração eficaz
+	-Trate do caso geral e não do específico
+	-Procure pontos comuns na resolução de problemas
+	-A abstração não deve se sobrepor à solução do problema.
+	-A experiência e a prática levam a perfeição.
+
+Tipos Abstratos de Dados
+	Conceito de difinição de tipos de dados que podem servir a 
+    múltiplos propósitos. Por exemplo, um tipo de dados de listas dinâmicas.
+	Na O.O., ao criar uma nova classe, estamos definindo um novo tipo 
+    de dados. Esses tipos definidos pelo usuário podem ser utilizados para
+    múltiplos propósitos se forem desenvolvidos adequadamente.
+
+Gabaritos
+	Gabaritos são um instrumento poderoso da linguagem C++, pois permitem
+    que uma implementação seja independente do tipo de dados.
+	Os gabaritos, também chamados de templates, permitem a ampliação do
+    contexto de uma implementação.

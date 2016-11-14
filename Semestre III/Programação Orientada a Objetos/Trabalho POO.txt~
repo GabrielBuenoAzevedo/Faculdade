@@ -1,0 +1,67 @@
+A biblioteca padrão de gabaritos ou STL (Standard Template Library, termo vindo do inglês), é uma biblioteca de classes de contêiner em C++. Ela possui diversos algoritmos e tipos de estruturas de dados, sendo alguma das classes inclusas vector, list, deque, set, multiset, map, multimap, hash_set, hash_map, hash_multiset e hash_multimap, que serão explicadas posteriormente neste texto. Vale comentar também que quase todos os componentes presentes na STL são compostos por gabaritos, o que dá a característica de generalização à biblioteca.
+Outro componente importante da STL é o uso de iteradores. Como dito em (cal-linux.com/tutorials/STL.html, visitado dia 29/05/2016, as 22:23):
+	"A STL tira vantagem da característica de sobrecarga de operadores da linguagem C++ para fornecer definições de classe para os iteradores para representar objetos parecidos com ponteiros."
+Ou seja: iteradores são tipos de objetos que, com a sobrecarga de operadores (com a definição dos operadores sendo equivalente à sua definição em ponteiros), podem ser usados como ponteiros no código.
+
+
+-Classes de contêiner
+Como dito anteriormente, a STL possui classes de contêiner. Classes de contêiner são classes que contém outros objetos. No caso da STL, as classes de contêiner são feitas baseadas em gabaritos, ou seja, podem ser inicializadas em qualquer tipo de objeto. As classes de contêiner podem ser divididas em dois tipos: Classes de Contêiner Associativas ou Classes de Contêiner Sequencial.
+
+	*Classes de Contêiner Sequencial
+	São compostas por contêineres sequenciais. Contêineres sequenciais são aqueles em que os elementos estão dispostos de forma linear.
+	A seguir são comentadas brevemente as classes de contêiner sequencial presentes na STL
+
+	-vector
+	É uma classe que suporta acesso aleatório aos seus elementos. É usada para criar objetos que possam armazenar e recuperar informações em 
+	função de um índice.
+
+	-deque
+	É bem parecida com a classe vector. As principais características que os diferem são: deque suporta tempo constante de inserção no inicio da
+	sequência, enquanto no vector é um tempo linear. deque também não possui nada análogo ao capacity() e ao reserve() que a classe vector
+	possui.
+
+	-list
+	É uma lista duplamente encadeada, ou seja, uma lista que possui movimento tanto para frente quanto para trás, além de ter um tempo constante
+	de inserção ou remoção de elementos em qualquer parte da lista. 
+
+	-slist
+	É uma lista simplesmente encadeada, ou seja, uma lista que possui movimento somente para a frente, além de ter um tempo constante de inser
+	ção de inserção ou remoção de elementos em qualquer parte da lista.
+	A slist se difere da list por seus iteradores serem do tipo forward, enquanto os da list são do tipo bidirecional. É recomendado o uso do
+	list apenas quando o uso do iterador bidirecional for necessário, pois listas simplesmente encadeadas são menores e mais rápidas do que
+	listas duplamente encadeadas.
+
+	-bit_vector
+	É essencialmente um vector<bool>, pois é uma sequência com a mesma interface de vector. A diferença de ambas as classes é que um bit_vector,
+	diferente de um vector (onde é necessário pelo menos um byte por elemento), requere apenas um bit por elemento, o que aumenta a eficiencia
+	de espaço.
+	
+	*Classes de Contêiner Associativas 
+	São compostas por contêineres associativos. Contêineres associativos se diferenciam dos sequenciais por não possuir um mecanismo para inser-
+	ção de elementos em uma posição específica. Isso se deve ao fato de que os elementos são dispostos em relação à classe. Por exemplo, elemen-
+	tos em um contêiner associativo por Hash sempre são dispostos de acordo com a função Hash.
+	Como em todos os contêineres, os elementos de um contêiner associativo contém um valor, mas além do valor, os elementos de um contêiner as-
+	sociativo contém uma chave, que é por onde os elementos são organizados.
+	A seguir são comentadas brevemente as classes de contêiner associativo presentes na STL
+
+	-set
+	Set é o representante de um conjunto.Set é um contêiner simplesmente associativo, ou seja, o seu tipo de valor, junto com o seu tipo de cha-
+	ve é chave. Também é um contêiner associativo único, sendo assim, nenhum elemento é igual à outro.
+
+	-multiset
+	Multiset é semelhante à classe set, com a diferença de que, ao invés de ser um contêiner associativo único, é um contêiner associativo múl-
+	tiplo, onde dois ou mais elementos podem ser idênticos.
+
+	-map
+	Map é um contêiner associativo ordenado, que guarda os elementos formados por uma combinação de valores mapeados e valores de chave.
+	Geralmente, os valores de chave são usados na identificação e ordenação dos elementos e os valores mapeados são usados para conter o conteú-
+	do do elemento em si. Map é um contêinet associativo único, ou seja, nenhum elemento é igual à outro.
+
+	-multimap
+	Multimap é semelhante à classe map, com a diferença de que, ao invés de ser um contêiner associativo único, é um contêiner associativo múlti
+	plo, onde dois ou mais elementos podem ser idênticos.
+
+	
+	
+
+	
