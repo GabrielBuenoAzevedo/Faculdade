@@ -1,0 +1,107 @@
+#include <iostream>
+#include<ctime>
+#include<clocale>
+#include <iomanip>
+#include<cstdlib>
+#include<iomanip>
+#include<cstring>
+
+using std::cin;
+using std::cout;
+using std::endl;
+using std::ios;
+using namespace std;
+using std::setw;
+using std::setiosflags;
+using std::setprecision;
+
+class Pedido
+{
+	protected:
+		time_t DataInicio;
+		int codCupom;
+		char Descricao[200];
+		float Valor;
+		char Status[50];
+		time_t DataFinal;
+
+	public:
+		Pedido();
+		void setStatus(char *Status);
+		char *getStatus();
+		int getCodCupom();
+		void setDataFinal(time_t DataInicio);
+		time_t getDataInicio();
+		time_t getDataFinal();
+		void display();
+};
+
+//Construtor da classe pedido
+Pedido::Pedido()
+{
+	time_t DataInicio = time(0);
+
+	codCupom = DataInicio;
+
+	cout << "\nDescriçao: ";
+	cin.getline(Descricao, 200);
+	cin.clear();
+
+	cout << "\nValor: ";
+	cin >> Valor;
+	cin.ignore();
+
+	cout << "\nStatus: ";
+	//cin.getline(Status, 50);
+	strcpy(Status,"Em Aberto");
+
+}
+
+//Metodos de pedido
+void Pedido::setStatus(char *Status)
+{
+	//strcpy(this->Status,Status);
+	if(strcmp(Status,"Finalizado")==0 || strcmp(Status,"Em andamento"))
+    		strcpy(this->Status,Status);
+  	else
+    		cout<<"Status inválido!"<<endl;
+}
+
+char *Pedido::getStatus()
+{
+	return Status;
+}
+
+int Pedido::getCodCupom()
+{
+	return codCupom;
+}
+
+void Pedido::setDataFinal(time_t DataFinal) //receber data final quando elemento for retirado da fila
+{
+	this -> DataFinal = DataFinal;
+}
+
+time_t Pedido::getDataInicio()
+{
+	return DataInicio;
+}
+
+time_t Pedido::getDataFinal()
+{
+	return DataFinal;
+}
+
+void Pedido::display()
+{
+	struct tm * dInicio = localtime( & DataInicio );
+	struct tm * dFinal = localtime( & DataFinal );
+
+	cout << "\nData Inicio: " << dInicio -> tm_sec << dInicio -> tm_min << dInicio -> tm_hour << '/' << dInicio -> tm_mday << '-' << (dInicio -> tm_mon + 1) << '-' << (dInicio -> tm_year + 1900) //Impressão da data inicio formatada
+		 << "\nCodigo do Cupom: " << codCupom
+		 << "\nDescrição: " << Descricao
+		 << "\nValor: R$" << Valor
+		 << "\nStatus: " << Status
+		 << "\nData Final: " << dFinal -> tm_sec << dFinal -> tm_min << dFinal -> tm_hour << '/' << dFinal -> tm_mday  << '-' << (dFinal -> tm_mon + 1) << '-' << (dFinal -> tm_year + 1900) //Impressão da data final formatada
+		 << endl;
+}

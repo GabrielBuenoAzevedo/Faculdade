@@ -1,0 +1,15 @@
+	1 - Criar a classe Círculo
+		---------------------------
+	       |           Circulo         |
+	       |---------------------------|
+	       |  #centro: Ponto2D         |
+	       |  #raio: T                 |
+	       |---------------------------|
+	       |  +Circulo()               |
+	       |  +getCentro():Ponto2D     |
+	       |  +setCentro(Ponto2D):void |
+	       |  +getRaio(): T		   |
+	       |  +setRaio(T): void        |
+	       |  +getArea(): T		   |
+	       |  +getPerimetro(): T	   |
+		---------------------------

@@ -1,0 +1,35 @@
+
+	 ------------------------------
+	|	      Pedido		|
+	|-------------------------------|
+	| #data_inicio : time	    	|
+	| #Descricao: string	     	|
+	| #valor : float	     	|
+	| #status : strings	     	|
+	| #date_final: time	     	|
+	|-------------------------------|	
+	| +Pedido(time,string,float  	|
+	| +setStatus(string):void	|
+	| +getStatus():string		|
+	| +setDataFinal(time):void	|
+	| +getDataInicial():time	|
+	| +getDataFinal():time		|
+	| +display():void		|
+	 -------------------------------
+
+	 -------------------------------
+	|	      Fila		|
+	|-------------------------------|
+	| #Inicio: Elemento*		|
+	| #Fim: Elemento*		|
+	| #Qntd: int			|
+	|-------------------------------|
+	| +Fila()			|
+	| +Enfileirar(Tipo):void	|
+	| +Desenfileirar():void		|
+	| +getQntd():int		|
+	| +getFirst():Tipo		|
+	 -------------------------------
+
+Após desenfileirar o pedido ele deve ir para uma lista de pedidos atendidos.
+Deve ser possível visualizar o pedido atendido mais rápido, o mais demorado e a média de tempo de atendimento dos pedidos.

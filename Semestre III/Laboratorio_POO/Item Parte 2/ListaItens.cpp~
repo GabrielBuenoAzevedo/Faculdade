@@ -1,0 +1,137 @@
+#include "ListaItens.h"
+
+ListaItens::ListaItens(){
+	Lista = NULL;
+	ListaCompras = NULL;
+}
+
+void ListaItens::compraItem(){
+	cout << "Digite o nome do produto que deseja comprar: ";
+	char NomeProduto[100];
+	cin.getline(NomeProduto,100);
+	
+	Item *aux;
+	aux = consultarItem(NomeProduto);
+
+	if(aux == NULL)
+		cout << "Produto não foi encontrado no estoque!" << endl;
+	else{
+		aux->displayInfo();
+
+		do{
+		cout << "\nEntre o número de unidades que deseja comprar: ";
+		int QtddProdutos;
+		cin >> QntddProdutos;
+		if(QntddProdutos > aux->Qtdd)
+			cout << "O número de itens é maior que o do estoque!\nTente novamente." << endl;
+		}while(QntddProdutos > aux->Qtdd);		
+
+		adicionaCompra(QntddProdutos);
+
+	}
+}
+
+void ListaItens::adicionaCompra(int QntddProdutos, Item *ProdutoEstoque){
+	Item *Novo = new Item();
+	Novo->setPreco(ProdutoEstoque->getPreco());
+	Novo->setQntdd(QntddProdutos);
+	Novo->setDesconto(ProdutoEstoque->getDesconto());
+	precoVenda += Novo->getPreco()*(1-(Novo->getDesconto()/100));
+	
+	Novo->prox = ListaCompras;
+	ListaCompras = Novo;
+}
+
+void ListaItens::EmiteBoleto(){
+	
+}
+
+void ListaItens::inserir(){
+	Item *Novo = new Item();
+	if(Novo->verificaValidade()) {
+		cout<<"\nInforme o preço do item: ";
+		float preco;
+		cin>>preco;
+		Novo->setPreco(preco);
+	
+		cout<<"\nInforme o desconto: ";
+		float desconto;
+		cin>>desconto;
+		Novo->setDesconto(desconto);
+		
+		cout<<"\nInforme a quantidade: ";
+		int Qtdd;
+		cin>>Qtdd;
+		Novo->setQuantidade(Qtdd);
+		
+		Novo->prox = Lista;
+		Lista = Novo;
+	}
+	else
+		cout<<"\n O item está fora da validade e não pode ser inserido\n\n";
+}
+
+void ListaItens::imprimirLista(){
+	Item *aux;
+	
+	aux = Lista;
+	while(aux!=NULL){
+		cout<<"\n";
+		aux->displayInfo();
+		aux = aux->prox;
+	}
+}
+
+float ListaItens::valorTotal(){
+	float total=0;
+	Item *aux;
+	
+	aux=Lista;
+	while(aux!=NULL){
+		total += aux->calculaPrecoTotal();
+		aux=aux->prox;
+	}
+	return total;
+}
+
+Item* ListaItens::consultarItem(char Nome[]){
+	Item *aux;
+	aux = Lista;
+
+	while(aux != NULL){
+	if(std::strcmp(aux->getNome(),Nome) == 0)
+		return aux;
+
+	aux = aux->prox;
+	}
+
+	return NULL;	
+}
+
+void ListaItens::excluirItem(char Nome[]){
+	Item *aux;
+	Item *auxProx;
+	
+	aux = Lista;
+	auxProx = aux->prox;
+
+	if(auxProx == NULL && strcmp(aux->getNome(),Nome)==0){
+		cout << '\n' << Nome << " EXCLUÍDO COM SUCESSO!\n";
+		delete(aux);
+		Lista=NULL;
+		}
+
+	while(auxProx != NULL){
+		if(strcmp(auxProx->getNome(),Nome) == 0){			
+			aux->prox = auxProx->prox;
+			cout << '\n'<< Nome << " EXCLUÍDO COM SUCESSO!\n";
+			delete(auxProx);
+			}
+	aux = aux->prox;
+	auxProx = auxProx->prox;
+	}
+
+	if(auxProx == NULL && Lista != NULL)
+		cout << "\n\nElemento não foi achado na lista!!!!!!!\n";
+}
+

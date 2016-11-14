@@ -1,0 +1,19 @@
+#include "Item.h"
+
+class ListaItens {
+		private:
+			Item *Lista;			//Estoque
+			Item *ListaCompras;
+			float PrecoCompra;
+		public:
+			ListaItens();
+			void inserir();
+			Item* consultarItem(char Nome[]);
+			void excluirItem(char Nome[]);
+			float valorTotal();
+			void imprimirLista();
+			void emiteBoleto();
+};
+
+
+
