@@ -1,0 +1,77 @@
+#include "ArvoreBin.h"
+
+#include <iostream>
+using namespace std;
+
+#include <cstdlib>
+#include <ctime>
+#include <iomanip>
+
+main(){
+
+	
+	int num_arv;	
+	int count;
+	int limite;
+	clock_t t_inicial;
+	clock_t t_final;
+	double t_total;
+
+	srand(time(NULL));	
+
+	do{
+		cout << "Arvore Binária\n" 		\
+		     << "[1] 100.000 elementos\n" 	\
+		     << "[2] 300.000 elementos\n" 	\
+		     << "[3] 500.000 elementos\n" 	\
+		     << "[4] Sair\n"	\
+		     << "Escolha a opção: ";
+		cin >> limite;
+	
+		if(limite >=1 && limite <=4){
+			switch(limite){
+			case 1:	limite = 100000;
+				break;
+			case 2: limite = 300000;
+				break;
+			case 3: limite = 500000;
+				break;
+			}
+
+
+			t_inicial = clock();
+
+			num_arv = rand();
+			ArvoreBin *Arvore = new ArvoreBin(num_arv);
+
+			for(count = 0; count < limite-1; count ++){
+				num_arv = rand();
+				Arvore->InserirElemento(num_arv);
+			}
+
+			t_final = clock();
+	
+			t_total = ((double)(t_final - t_inicial))/(CLOCKS_PER_SEC/1000);
+
+			cout << "tempo decorrido inserção: " << t_total << endl;
+
+
+			//Procura um elemento qualquer
+			t_inicial = clock();
+			num_arv = rand()%100;
+			Arvore->ProcurarElemento(num_arv);			
+			t_final = clock();
+			t_total = ((double)(t_final - t_inicial))/(CLOCKS_PER_SEC/1000);
+			cout << "Tempo decorrido da consulta do elemento: "<<  t_total << endl;
+
+			//Remove um elemento qualquer
+			t_inicial = clock();
+			num_arv = rand()%100;
+			Arvore->DeletarElemento(num_arv);
+			t_final = clock();
+			t_total = ((double)(t_final - t_inicial))/(CLOCKS_PER_SEC/1000);
+			cout << "Tempo decorrido da remoção do elemento: "<< t_total << "\n\n";
+
+		}
+	}while(limite != 4);
+}

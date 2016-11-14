@@ -1,0 +1,28 @@
+#include <iostream>
+using namespace std;
+
+#include "ArvoreAVL.h"
+
+main(){
+	int num_arv;
+
+	cout << "Coloque o elemento da árvore AVL: ";
+	cin >> num_arv;
+
+	ArvoreAVL *Arvore = new ArvoreAVL(num_arv);
+	
+	do{
+		cout << "\nColoque o próximo elemento da árvore AVL: ";
+		cin >> num_arv;
+		if(num_arv != 0)
+			Arvore = Arvore->InserirElemento(num_arv);
+	}while(num_arv != 0);
+	Arvore->DisplayArvore();
+
+	cout << "\nColoque o elemento para retirar da árvore AVL: ";
+	cin >> num_arv;
+	Arvore = Arvore->DeletarElemento(num_arv);
+	Arvore->DisplayArvore();
+
+	cout << "\n\n";
+}

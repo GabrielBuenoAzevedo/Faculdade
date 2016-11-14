@@ -1,0 +1,102 @@
+#include "ArvoreBin.h"
+
+ArvoreBin::ArvoreBin(int num){
+	dir = NULL;
+	esq = NULL;
+	this->num = num;
+}
+
+
+void ArvoreBin::InserirElemento(int num){
+	if(num < this->num){
+		if(esq != NULL)
+			esq->InserirElemento(num);
+		else
+			esq = new ArvoreBin(num);
+	}else{
+		if(dir != NULL)
+			dir->InserirElemento(num);
+		else
+			dir = new ArvoreBin(num);
+	}
+}
+
+
+ArvoreBin* ArvoreBin::DeletarElemento(int num){
+	if(num < this->num && esq != NULL)
+		esq = esq->DeletarElemento(num);
+	if(num > this->num && dir !=NULL)
+		dir = dir->DeletarElemento(num);
+	if(num == this->num){
+		ArvoreBin *aux1 = esq;
+		ArvoreBin *aux2 = dir;
+		
+		cout << "Chegou aqui";
+		if(dir != NULL){
+			while(aux2->esq!=NULL)
+				aux2 = aux2->esq;	//Vai para a máxima posição esquerda do ramo direito 
+		
+			aux2->esq = aux1;
+		
+			//cout << "This = " << this->num;
+			//aux2=this;		//Se prepara para deletar o elemento atual;
+			//this = this->dir;	//Este agora é o elemento direito;
+			//cout << "This = " << this->num;
+		}
+
+		if(dir != NULL)
+			aux2 = dir;
+		else
+			aux2 = esq;
+	
+		aux1=this;
+		aux1->esq = NULL;
+		aux1->dir = NULL;		
+		delete aux1;
+	
+		return aux2;			//Retorna o elemento que ficará no lugar do antigo
+	}
+	
+	return this;				//Retorna o próprio elemento chamando a função
+}
+
+void ArvoreBin::DisplayArvore(){
+	if(esq != NULL)
+		esq->DisplayArvore();
+
+	cout << this->num << ' ';
+
+	if(dir != NULL)
+		dir->DisplayArvore();
+		
+}
+
+bool ArvoreBin::ProcurarElemento(int num){
+	if(num == this->num){					//Achou o número		
+		return true;
+		}
+
+	if(num < this->num){					//Número é menor que o número do elemento atual
+		if(esq != NULL)					//Se a esquerda for diferente de NULL, procura nela, se não, retorna falso
+			return esq->ProcurarElemento(num);
+		else{
+			return false;
+			}
+		}
+	if(num > this->num){					//Número é maior que o número do elemento atual
+		if(dir != NULL)					//Se a direita for diferente de NULL, procura nela, se não, retorna falso
+			return dir->ProcurarElemento(num);
+		else{
+			return false;
+			}
+		}
+}
+
+void ArvoreBin::DestruirArvore(){
+	if(esq != NULL)
+		esq->DestruirArvore();
+	if(dir != NULL)
+		dir->DestruirArvore();
+	delete(this);
+}
+
